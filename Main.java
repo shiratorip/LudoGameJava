@@ -1,19 +1,90 @@
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
     static char[][] field = new char[13][27];
     static Team[] teams = new Team[4];
-    static int[][] path=new int[1][40];
+    static int[][] path=new int[40][2];
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int PlayersNum = sc.nextInt();
         fieldstdCreate();
+        fillPath();
         addPlayers(PlayersNum);
         addPawnsToField(PlayersNum);
         printField();
+        char plop='-';
+        System.out.println();
+        for (int i = 0; i < 13; i++) {
+            for (int j = 0; j < 27; j++) {
+                for (int k = 0; k < 40; k++) {
 
+                    if (path[k][0]==j &&path[k][1]==i){
+                       plop='o';
+                    }
+                }System.out.print(plop);
+                plop='-';
+            }
+            System.out.println();
+        }
 
+    }
+
+    private static void fillPath() {
+        int number=0;
+        //
+        for (int i = 0; i < 4; i++) {
+            path[number]= new int[]{15, 2+i};
+            number++;
+        }
+        for (int i = 0; i < 4; i++) {
+            path[number]= new int[]{17+(2*i), 5};
+            number++;
+        }
+        for (int i = 0; i < 2; i++) {
+            path[number]= new int[]{23, 6+i};
+            number++;
+        }
+        //
+        for (int i = 0; i < 4; i++) {
+            path[number]= new int[]{21-(2*i), 7};
+            number++;
+        }
+        for (int i = 0; i < 4; i++) {
+            path[number]= new int[]{15, 8+i};
+            number++;
+        }
+        for (int i = 0; i < 2; i++) {
+            path[number]= new int[]{13-(2*i), 11};
+            number++;
+        }
+        //
+        for (int i = 0; i < 4; i++) {
+            path[number]= new int[]{11, 10-i};
+            number++;
+        }
+        for (int i = 0; i < 4; i++) {
+            path[number]= new int[]{9-(2*i), 7};
+            number++;
+        }
+        for (int i = 0; i < 2; i++) {
+            path[number]= new int[]{3, 6-i};
+            number++;
+        }
+        //
+        for (int i = 0; i < 4; i++) {
+            path[number]= new int[]{5+(2*i),5};
+            number++;
+        }
+        for (int i = 0; i < 4; i++) {
+            path[number]= new int[]{11, 4-i};
+            number++;
+        }
+        for (int i = 0; i < 2; i++) {
+            path[number]= new int[]{13+(2*i), 1};
+            number++;
+        }
     }
 
 
@@ -82,16 +153,16 @@ public class Main {
         field[2][21] = 'b';
         //
         if (PlayersNum>2){
-        field[10][3] = 'c';
-        field[10][5] = 'c';
-        field[11][3] = 'c';
-        field[11][5] = 'c';
-        //
+            field[10][3] = 'c';
+            field[10][5] = 'c';
+            field[11][3] = 'c';
+            field[11][5] = 'c';
+            //
             if (PlayersNum>3){
-        field[10][23] = 'd';
-        field[10][21] = 'd';
-        field[11][23] = 'd';
-        field[11][21] = 'd';
+                field[10][23] = 'd';
+                field[10][21] = 'd';
+                field[11][23] = 'd';
+                field[11][21] = 'd';
             }
         }
     }
