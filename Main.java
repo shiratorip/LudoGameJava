@@ -3,7 +3,6 @@ import java.util.Scanner;
 
 public class Main {
     static char[][] field = new char[13][27];
-    static Team[] teams = new Team[4];
     static int[][] path=new int[40][2];
 
     public static void main(String[] args) {
@@ -21,13 +20,17 @@ public class Main {
                 for (int k = 0; k < 40; k++) {
 
                     if (path[k][0]==j &&path[k][1]==i){
-                       plop='o';
+                        plop='o';
+                        if (k==0)plop='P';
                     }
                 }System.out.print(plop);
                 plop='-';
             }
             System.out.println();
         }
+
+    }
+    public static void move(){
 
     }
 
@@ -92,7 +95,7 @@ public class Main {
         switch (PlayersNum) {
             case 2, 3, 4 -> {
                 for (int i = 0; i < PlayersNum; i++) {
-                    teams[i] = new Team(i + 1);
+
                 }
             }
             default -> {
@@ -167,57 +170,8 @@ public class Main {
         }
     }
 
-    /*
-        public static boolean isPathBlocked(int x, int Moves,char aChar) {
-            for (int i = 0; i < Moves; i++) {
-                if (place[Moves+x]!='x'){
-                    if (place[Moves+x]==aChar){
-                        //can pass
-                    }else{
-                       //beat or  path is blocked move on Moves+x
-                    }
-                }
-            }
-        }
-    }
-    */
-    static class Team {
-        Pawn[] pawns = new Pawn[4];
-        int team,
-                isAtHome = 4, hasFinished;
 
-
-        Team(int team) {
-            this.team = team;
-            for (int i = 0; i < pawns.length; i++) {
-                pawns[i] = new Pawn(team);
-                pawns[i].x = -1;
-            }
-
-
-        }
 
     }
 
-    static class Pawn {
-        char aChar;
-        int x;
 
-        Pawn(int team) {
-            aChar = (char) (96 + team);
-        }
-
-        public void find(int X) {
-
-        }
-
-        public void move(int Moves) {
-            //  if(!Main.isPathBlocked(this.x,Moves,this.aChar))
-            this.x += Moves;
-        }
-
-        public void goHome() {
-            this.x = -1;
-        }
-    }
-}
